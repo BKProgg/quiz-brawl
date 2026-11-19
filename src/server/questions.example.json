@@ -1,0 +1,41 @@
+[
+  {
+    "id": "http-404",
+    "type": "OX",
+    "text": "HTTP 상태 코드 404는 '찾을 수 없음'을 뜻한다.",
+    "answerIndex": 0
+  },
+  {
+    "id": "not-relational-database",
+    "type": "CHOICE4",
+    "text": "다음 중 관계형 데이터베이스가 아닌 것은?",
+    "choices": ["PostgreSQL", "MySQL", "Redis", "Oracle"],
+    "answerIndex": 2
+  },
+  {
+    "id": "tcp-ordering",
+    "type": "OX",
+    "text": "TCP는 UDP보다 전송 순서를 보장하지 않는다.",
+    "answerIndex": 1
+  },
+  {
+    "id": "git-stash",
+    "type": "CHOICE4",
+    "text": "Git에서 작업 중인 변경을 임시로 치워 두는 명령은?",
+    "choices": ["git stash", "git rebase", "git bisect", "git cherry-pick"],
+    "answerIndex": 0
+  },
+  {
+    "id": "json-invalid-value",
+    "type": "CHOICE4",
+    "text": "JSON에서 값으로 쓸 수 없는 것은?",
+    "choices": ["null", "true", "undefined", "\"문자열\""],
+    "answerIndex": 2
+  },
+  {
+    "id": "https-tls",
+    "type": "OX",
+    "text": "HTTPS는 TLS로 통신 내용을 암호화한다.",
+    "answerIndex": 0
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": []
+  },
+  "include": ["src/game", "src/client", "tests/client/network-client.test.ts", "tests/client/player-connection.test.ts", "tests/client/player-connection-retry.test.ts", "tests/client/connection-fakes.ts", "tests/client/meteor-view.test.ts", "tests/client/canvas-viewport.test.ts", "tests/client/meteor-renderer.test.ts", "tests/client/character-lift-animator.test.ts"],
+  "exclude": []
+}

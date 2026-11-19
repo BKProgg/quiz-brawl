@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>퀴즈 난투 목업</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; padding: 24px 16px 48px; background: #151925; color: #e9ecef; font-family: Jua, sans-serif; }
+    main { max-width: 1280px; margin: 0 auto; }
+    h1 { font-family: "Black Han Sans", sans-serif; font-weight: 400; font-size: 34px; margin: 0 0 6px; }
+    h2 { font-weight: 400; font-size: 24px; margin: 36px 0 10px; color: #ffd43b; }
+    p { margin: 0 0 8px; color: #adb5bd; }
+    canvas { display: block; width: 100%; height: auto; border-radius: 16px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); }
+    .style-switch { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+    .style-switch button {
+      font: inherit; font-size: 17px; padding: 8px 16px; border-radius: 999px; border: 2px solid #495057;
+      background: #212634; color: #e9ecef; cursor: pointer;
+    }
+    .style-switch button[aria-pressed="true"] { background: #ffd43b; border-color: #ffd43b; color: #1d2330; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>정답 쟁탈 난투 퀴즈 · 비주얼 목업</h1>
+    <p>AI 생성 이미지(배경 제거·색 입힘)로 그린 화면입니다. 모든 장면은 반복 재생됩니다.</p>
+    <div class="style-switch" role="group" aria-label="캐릭터 스타일">
+      <button type="button" data-style="cute" aria-pressed="true">AI · 귀여운 눈</button>
+      <button type="button" data-style="visor" aria-pressed="false">AI · 선글라스</button>
+      <button type="button" data-style="code" aria-pressed="false">코드 그림 (이전 목업)</button>
+    </div>
+    <h2>1. 캐릭터 시트</h2>
+    <canvas id="sheet-canvas" width="1600" height="820"></canvas>
+    <h2>2. 게임 화면 (문제 카운트 → 정답 공개, 13초 반복)</h2>
+    <canvas id="game-canvas" width="1600" height="900"></canvas>
+    <h2>3. 최종 순위 연출 (12초 반복)</h2>
+    <canvas id="ceremony-canvas" width="1600" height="900"></canvas>
+  </main>
+  <script src="sprite-art.js"></script>
+  <script src="character-art.js"></script>
+  <script src="face-art.js"></script>
+  <script src="item-art.js"></script>
+  <script src="effects-art.js"></script>
+  <script src="sheet-scene.js"></script>
+  <script src="game-scene.js"></script>
+  <script src="ceremony-scene.js"></script>
+  <script>
+    const scenes = [
+      ['sheet-canvas', drawCharacterSheet],
+      ['game-canvas', drawGameScene],
+      ['ceremony-canvas', drawCeremonyScene],
+    ].map(([canvasId, draw]) => ({ context: document.getElementById(canvasId).getContext('2d'), draw }));
+    const fixedTime = new URLSearchParams(location.search).get('t');
+    const startedAt = performance.now();
+    function renderFrame(now) {
+      const time = fixedTime === null ? (now - startedAt) / 1000 : Number(fixedTime);
+      scenes.forEach((scene) => scene.draw(scene.context, time));
+      requestAnimationFrame(renderFrame);
+    }
+    requestAnimationFrame(renderFrame);
+    loadSpriteAssets().catch((error) => console.error(error));
+    document.querySelectorAll('.style-switch button').forEach((button) => {
+      button.addEventListener('click', () => {
+        spriteState.isEnabled = button.dataset.style !== 'code';
+        if (spriteState.isEnabled) spriteState.style = button.dataset.style;
+        document.querySelectorAll('.style-switch button').forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+      });
+    });
+  </script>
+</body>
+</html>

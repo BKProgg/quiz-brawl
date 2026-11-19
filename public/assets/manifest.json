@@ -1,0 +1,161 @@
+{
+  "characters": {
+    "cute": {
+      "frames": {
+        "idle": {
+          "file": "characters/cute/idle.png",
+          "width": 170,
+          "height": 261
+        },
+        "walk": {
+          "file": "characters/cute/walk.png",
+          "width": 206,
+          "height": 259
+        },
+        "punch": {
+          "file": "characters/cute/punch.png",
+          "width": 191,
+          "height": 261
+        },
+        "kick": {
+          "file": "characters/cute/kick.png",
+          "width": 205,
+          "height": 261
+        },
+        "block": {
+          "file": "characters/cute/block.png",
+          "width": 144,
+          "height": 261
+        },
+        "hold": {
+          "file": "characters/cute/hold.png",
+          "width": 170,
+          "height": 271
+        },
+        "stunned": {
+          "file": "characters/cute/stunned.png",
+          "width": 186,
+          "height": 298
+        },
+        "airborne": {
+          "file": "characters/cute/airborne.png",
+          "width": 237,
+          "height": 236
+        },
+        "down": {
+          "file": "characters/cute/down.png",
+          "width": 245,
+          "height": 144
+        },
+        "cheer": {
+          "file": "characters/cute/cheer.png",
+          "width": 206,
+          "height": 262
+        }
+      },
+      "portrait": {
+        "file": "characters/cute/portrait.png",
+        "width": 470,
+        "height": 727
+      }
+    },
+    "visor": {
+      "frames": {
+        "idle": {
+          "file": "characters/visor/idle.png",
+          "width": 154,
+          "height": 268
+        },
+        "walk": {
+          "file": "characters/visor/walk.png",
+          "width": 201,
+          "height": 270
+        },
+        "punch": {
+          "file": "characters/visor/punch.png",
+          "width": 175,
+          "height": 270
+        },
+        "kick": {
+          "file": "characters/visor/kick.png",
+          "width": 204,
+          "height": 271
+        },
+        "block": {
+          "file": "characters/visor/block.png",
+          "width": 138,
+          "height": 272
+        },
+        "hold": {
+          "file": "characters/visor/hold.png",
+          "width": 161,
+          "height": 265
+        },
+        "stunned": {
+          "file": "characters/visor/stunned.png",
+          "width": 187,
+          "height": 300
+        },
+        "airborne": {
+          "file": "characters/visor/airborne.png",
+          "width": 218,
+          "height": 251
+        },
+        "down": {
+          "file": "characters/visor/down.png",
+          "width": 253,
+          "height": 126
+        },
+        "cheer": {
+          "file": "characters/visor/cheer.png",
+          "width": 203,
+          "height": 265
+        }
+      },
+      "portrait": {
+        "file": "characters/visor/portrait.png",
+        "width": 452,
+        "height": 792
+      }
+    }
+  },
+  "items": [
+    {
+      "file": "items/item-0.png",
+      "width": 240,
+      "height": 252
+    },
+    {
+      "file": "items/item-1.png",
+      "width": 323,
+      "height": 203
+    },
+    {
+      "file": "items/item-2.png",
+      "width": 240,
+      "height": 355
+    },
+    {
+      "file": "items/item-3.png",
+      "width": 275,
+      "height": 281
+    },
+    {
+      "file": "items/item-4.png",
+      "width": 220,
+      "height": 286
+    },
+    {
+      "file": "items/item-5.png",
+      "width": 238,
+      "height": 250
+    }
+  ],
+  "arena": {
+    "office": {
+      "file": "arena/office.png",
+      "width": 1376,
+      "height": 768
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>전자금융개발 퀴즈 대회 관리자</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <canvas id="game-canvas" aria-label="경기장 관전 화면"></canvas>
+  <div class="overlay">
+    <section id="admin-panel" class="card admin-card">
+      <h2>관리자</h2>
+      <p id="admin-status" class="admin-status">연결하는 중…</p>
+      <p class="hint">참가자 <strong id="admin-player-count">0</strong>명</p>
+      <ul id="admin-player-list" class="admin-player-list"></ul>
+      <button id="admin-start-button" type="button" disabled>게임 시작</button>
+      <button id="admin-new-game-button" type="button" hidden>새 게임</button>
+      <p id="admin-message" class="error" role="status"></p>
+    </section>
+  </div>
+  <script type="module" src="/build/admin-main.js"></script>
+</body>
+</html>

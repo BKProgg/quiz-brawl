@@ -1,0 +1,91 @@
+html, body { margin: 0; height: 100%; overflow: hidden; background: #151925; }
+body { font-family: Jua, sans-serif; color: #e9ecef; }
+canvas { display: block; width: 100vw; height: 100vh; }
+
+.overlay { position: fixed; inset: 0; pointer-events: none; }
+.card {
+  pointer-events: auto; background: rgba(21, 25, 37, 0.92); border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45); padding: 24px 28px; box-sizing: border-box;
+}
+.card[hidden], .tutorial[hidden] { display: none; }
+h1, h2 { margin: 0; font-family: "Black Han Sans", sans-serif; font-weight: 400; }
+button {
+  font: inherit; font-size: 20px; padding: 12px 18px; border: 0; border-radius: 14px;
+  background: #ffd43b; color: #1d2330; cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: default; }
+.subtitle { margin: 6px 0 0; color: #adb5bd; }
+.hint { margin: 0; color: #adb5bd; font-size: 15px; }
+.error { min-height: 1.2em; margin: 0; color: #ff8787; }
+.color-dot { width: 14px; height: 14px; border-radius: 50%; flex: none; border: 2px solid rgba(0, 0, 0, 0.35); }
+
+/* 캐릭터 선택 화면 */
+.nickname-field { display: flex; align-items: center; gap: 12px; font-size: 18px; }
+.nickname-field input {
+  flex: 1; font: inherit; font-size: 20px; padding: 10px 14px; border-radius: 12px; border: 2px solid #495057;
+  background: #212634; color: #fff; outline: none;
+}
+.nickname-field input:focus { border-color: #ffd43b; }
+.picker-card {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: min(720px, calc(100vw - 32px)); display: flex; flex-direction: column; gap: 14px;
+}
+.picker-card h1 { font-size: 32px; color: #ffd43b; }
+.character-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.character-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px 8px;
+  background: #212634; border: 2px solid #3b4252; border-radius: 14px; color: #e9ecef; font-size: 16px;
+}
+.character-tile canvas { width: 100%; max-width: 96px; height: auto; }
+.character-tile:not(:disabled):hover { border-color: #ffd43b; transform: translateY(-2px); }
+.character-tile.is-used { opacity: 0.35; }
+.tile-status { font-size: 12px; color: #ff8787; min-height: 1em; }
+@media (max-width: 560px) { .character-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.admin-player-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 18px; }
+.admin-player-list li { display: flex; align-items: center; gap: 10px; }
+
+/* 튜토리얼: 반투명한 큰 키보드. 화면 클릭을 가로막지 않는다. */
+.tutorial {
+  position: absolute; left: 50%; bottom: 7vh; transform: translateX(-50%); pointer-events: none;
+  display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px 36px;
+  background: rgba(15, 18, 30, 0.55); border-radius: 28px; backdrop-filter: blur(2px);
+  transition: opacity 1s ease;
+}
+.tutorial.is-fading { opacity: 0; }
+.tutorial-keys { display: flex; align-items: flex-end; gap: 64px; }
+.arrow-keys { display: grid; grid-template-columns: repeat(3, 72px); grid-template-rows: 72px 72px auto; gap: 8px; }
+.arrow-keys .key-up { grid-column: 2; grid-row: 1; }
+.arrow-keys kbd:nth-of-type(2) { grid-column: 1; grid-row: 2; }
+.arrow-keys kbd:nth-of-type(3) { grid-column: 2; grid-row: 2; }
+.arrow-keys kbd:nth-of-type(4) { grid-column: 3; grid-row: 2; }
+.key-caption { grid-column: 1 / 4; margin: 4px 0 0; text-align: center; font-size: 22px; }
+.action-keys { display: flex; gap: 18px; }
+.action-key { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 120px; text-align: center; }
+.action-key p { margin: 0; font-size: 22px; }
+.action-key small { display: block; font-size: 13px; color: #ced4da; margin-top: 2px; }
+.tutorial kbd {
+  display: flex; align-items: center; justify-content: center; width: 72px; height: 72px; box-sizing: border-box;
+  font-family: "Black Han Sans", sans-serif; font-size: 34px; color: #f1f3f5;
+  background: rgba(255, 255, 255, 0.14); border: 3px solid rgba(255, 255, 255, 0.45); border-bottom-width: 7px;
+  border-radius: 14px; transition: transform 0.06s, background 0.06s;
+}
+.tutorial kbd.is-pressed { background: #ffd43b; color: #1d2330; border-color: #f08c00; transform: translateY(4px); border-bottom-width: 3px; }
+.tutorial-tip { margin: 0; font-size: 18px; color: #ffd43b; }
+.tutorial-action { margin: 0; min-height: 52px; font-family: "Black Han Sans", sans-serif; font-size: 44px; color: #fff; }
+.tutorial-action.is-popping { animation: action-pop 0.35s ease-out; }
+.tutorial-close { margin: 0; font-size: 14px; color: #adb5bd; }
+@keyframes action-pop { from { transform: scale(1.6); opacity: 0.4; } to { transform: scale(1); opacity: 1; } }
+
+/* 관리자 화면 */
+.admin-card { position: absolute; top: 24px; right: 24px; width: 280px; display: flex; flex-direction: column; gap: 12px; }
+/* 게임 중에는 문제 배너를 가리지 않도록 오른쪽 아래에 작게 둔다. */
+.admin-card.is-compact { top: auto; bottom: 24px; width: 240px; padding: 14px 18px; gap: 6px; opacity: 0.85; }
+.admin-card.is-compact .admin-player-list { display: none; }
+/* 게임 중단 버튼은 실수로 누르지 않게 작고 눈에 띄는 색으로 둔다. */
+.admin-card button.is-danger { background: #c92a2a; color: #fff; font-size: 15px; padding: 8px 14px; }
+/* 최종 결과 화면에서는 시상대(가운데)·순위표(오른쪽)·꼴찌 조명(왼쪽 아래)을 가리지 않도록 왼쪽 위에 작게 둔다. */
+.admin-card.is-final { right: auto; left: 24px; width: 220px; padding: 14px 18px; gap: 8px; }
+.admin-card.is-final .admin-player-list { display: none; }
+.admin-card h2 { font-size: 26px; color: #ffd43b; }
+.admin-status { margin: 0; font-size: 17px; }

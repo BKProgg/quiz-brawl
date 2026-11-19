@@ -1,0 +1,11 @@
+{
+  "name": "quiz-brawl",
+  "main": "src/server/worker.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./public" },
+  "durable_objects": {
+    "bindings": [{ "name": "GAME_ROOM", "class_name": "GameRoom" }]
+  },
+  // 무료 플랜은 SQLite 백엔드 Durable Object만 지원한다.
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["GameRoom"] }]
+}

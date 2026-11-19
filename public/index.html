@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>전자금융개발 퀴즈 대회</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <canvas id="game-canvas" aria-label="게임 화면"></canvas>
+  <div class="overlay">
+    <section id="character-picker" class="card picker-card">
+      <h1>전자금융개발 퀴즈 대회</h1>
+      <p class="subtitle">닉네임을 쓰고 캐릭터를 고르면 바로 입장합니다!</p>
+      <label class="nickname-field">닉네임
+        <input id="nickname-input" maxlength="5" autocomplete="off" placeholder="최대 5글자">
+      </label>
+      <div id="character-grid" class="character-grid"></div>
+      <p id="picker-message" class="error" role="status">불러오는 중…</p>
+    </section>
+    <section id="tutorial" class="tutorial" hidden aria-label="조작법">
+      <div class="tutorial-keys">
+        <div class="arrow-keys">
+          <kbd data-code="ArrowUp" class="key-up">↑</kbd>
+          <kbd data-code="ArrowLeft">←</kbd>
+          <kbd data-code="ArrowDown">↓</kbd>
+          <kbd data-code="ArrowRight">→</kbd>
+          <p class="key-caption">이동</p>
+        </div>
+        <div class="action-keys">
+          <div class="action-key"><kbd data-code="KeyZ">Z</kbd><p>주먹<small>아이템 위: 줍기 · 들고 있으면: 던지기</small></p></div>
+          <div class="action-key"><kbd data-code="KeyX">X</kbd><p>발차기<small>멀리 날려 보내기</small></p></div>
+          <div class="action-key"><kbd data-code="KeyC">C</kbd><p>막기<small>누르고 있기</small></p></div>
+        </div>
+      </div>
+      <p class="tutorial-tip">상대에게 붙어서 방향키 + Z = 번쩍 들기, 다시 Z = 던지기!</p>
+      <p id="tutorial-action" class="tutorial-action"></p>
+      <p class="tutorial-close">키를 눌러 연습해 보세요 · Esc 또는 Enter로 닫기</p>
+    </section>
+  </div>
+  <script type="module" src="/build/main.js"></script>
+</body>
+</html>
